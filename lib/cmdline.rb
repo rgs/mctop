@@ -25,6 +25,11 @@ class CmdLine
         @config[:refresh_rate] = refresh_rate
       end
 
+      @config[:set] = 0
+      opt.on '-s', '--set', 'Show SET volumes instead of GET' do
+        @config[:set] = 1
+      end
+
       opt.on_tail '-h', '--help', 'Show usage info' do
         puts opts
         exit

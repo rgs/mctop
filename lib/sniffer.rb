@@ -7,6 +7,10 @@ class MemcacheSniffer
   def initialize(config)
     @source  = config[:nic]
     @port    = config[:port]
+    @rxscan  = /VALUE (\S+) \S+ (\S+)/
+    if config[:set] == 1
+        @rxscan = /^(?:CAS )?(?:SET|ADD|REPLACE|APPEND|PREPEND) (\S+) [0-9]+ [0-9]+ (\S+)/i
+    end
 
     @metrics = {}
     @metrics[:calls]   = {}
@@ -30,7 +34,7 @@ class MemcacheSniffer
       @metrics[:stats] = cap.stats
 
       # parse key name, and size from VALUE responses
-      if packet.raw_data =~ /VALUE (\S+) \S+ (\S+)/
+      if packet.raw_data =~ @rxscan
         key   = $1
         bytes = $2
 
