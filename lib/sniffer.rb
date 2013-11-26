@@ -11,6 +11,7 @@ class MemcacheSniffer
     if config[:set] == 1
         @rxscan = /^(?:CAS )?(?:SET|ADD|REPLACE|APPEND|PREPEND) (\S+) [0-9]+ [0-9]+ (\S+)/i
     end
+    @host    = config[:host]
 
     @metrics = {}
     @metrics[:calls]   = {}
@@ -29,7 +30,12 @@ class MemcacheSniffer
 
     @done    = false
 
-    cap.setfilter("port #{@port}")
+    if @host == ""
+      cap.setfilter("port #{@port}")
+    else
+      cap.setfilter("host #{@host} and port #{@port}")
+    end
+
     cap.loop do |packet|
       @metrics[:stats] = cap.stats
 
