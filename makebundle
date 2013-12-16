@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo '#!/usr/bin/env ruby' > mctop
+cat lib/*.rb >> mctop
+sed '/^require/d' bin/mctop >> mctop
