@@ -44,6 +44,7 @@ the quickest way to get it running is to:
         -d, --discard=THRESH             Discard keys with request/sec rate below THRESH
         -r, --refresh=MS                 Refresh the stats display every MS milliseconds
         -s, --set                        Gather stats on SET-like commands instead of GET
+            --del                        Gather stats on DELETE commands instead of GET
         -h, --help                       Show usage info
 
 ## User interface commands

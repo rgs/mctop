@@ -35,6 +35,11 @@ class CmdLine
         @config[:set] = 1
       end
 
+      @config[:del] = 0
+      opt.on '--del', 'Show DELETE volumes instead of GET' do
+        @config[:del] = 1
+      end
+
       opt.on_tail '-h', '--help', 'Show usage info' do
         puts opts
         exit

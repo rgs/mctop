@@ -11,6 +11,9 @@ class MemcacheSniffer
     if config[:set] == 1
         @rxscan = /^(?:CAS )?(?:SET|ADD|REPLACE|APPEND|PREPEND) (\S+) [0-9]+ [0-9]+ (\S+)/i
     end
+    if config[:del] == 1
+        @rxscan = /^DELETE (\S+)/i
+    end
     @host    = config[:host]
 
     @metrics = {}
