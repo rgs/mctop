@@ -30,6 +30,11 @@ class CmdLine
         @config[:refresh_rate] = refresh_rate
       end
 
+      @config[:get] = 0
+      opt.on '-g', '--get', 'Show number of GET requests (including empty returns)' do
+        @config[:get] = 1
+      end
+
       @config[:set] = 0
       opt.on '-s', '--set', 'Show SET volumes instead of GET' do
         @config[:set] = 1
