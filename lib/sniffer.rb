@@ -9,7 +9,7 @@ class MemcacheSniffer
     @port    = config[:port]
     @rxscan  = /VALUE (\S+) \S+ (\S+)/
     if config[:get] == 1
-        @rxscan = /get (\S+)/
+        @rxscan = /^get (\S+)/
     end
     if config[:set] == 1
         @rxscan = /^(?:CAS )?(?:SET|ADD|REPLACE|APPEND|PREPEND) (\S+) [0-9]+ [0-9]+ (\S+)/i
